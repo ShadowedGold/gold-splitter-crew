@@ -1,0 +1,117 @@
+@media (max-aspect-ratio: 1/1) {
+  :root {
+    --windowWidth: 100vw;
+  }
+}
+@media (min-aspect-ratio: 1/1) {
+  :root {
+    --windowWidth: 550px;
+  }
+}
+:root {
+  --paddingWidth: calc(var(--windowWidth)/100);
+  --lightenAmount: 10%;
+  --darkenAmount: 10%;
+  --colourMain: dodgerblue;
+  /* can be switched out for comment below when CSS Relative Colors becomes standard */
+  --colourMain-h: 209.6;
+  --colourMain-s: 100%;
+  --colourMain-l: 55.88%;
+  --colourMainL: hsl(var(--colourMain-h), var(--colourMain-s), calc(var(--colourMain-l) + var(--lightenAmount)));
+  --colourMainD: hsl(var(--colourMain-h), var(--colourMain-s), calc(var(--colourMain-l) - var(--darkenAmount)));
+  /*
+  --colourMainL: hsl(from var(--colourMain) h s calc(l + var(--lightenAmount)));
+  --colourMainD: hsl(from var(--colourMain) h s calc(l - var(--darkenAmount)));
+  */
+  --colourTxtMain: white;
+  --multiplier: 4;
+  --inputHeight: calc(var(--paddingWidth) * calc(var(--multiplier) + 3));
+  --colourBg: black;
+  background: var(--colourBg);
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+.outer {
+  display: flex;
+  height: 100%;
+  padding: calc(var(--paddingWidth)*3);
+  box-sizing: border-box;
+  justify-content: center;
+  margin-top: 33vh;
+}
+.inner {
+  position: relative;
+  width: var(--windowWidth);
+  border-radius: calc(var(--paddingWidth)*2);
+  display: flex;
+  background-color: var(--colourMain);
+}
+.currencyHolder, .partyHolder, .inputHolder,
+.label, .field, .results, button {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.currencyHolder, .partyHolder {
+  margin-bottom: var(--paddingWidth);
+  padding: 0 var(--paddingWidth)
+}
+.inputHolder:not(:last-child) {
+  margin-right: var(--paddingWidth);
+}
+.currencyHolder {
+  flex-direction: row;
+}
+.inner, .inputHolder, .results {
+  flex-direction: column;
+}
+.label, .amount, button {
+  font-size: calc(var(--paddingWidth) * 3);
+}
+.inner, .label, input, .results, button {
+  padding: var(--paddingWidth);
+}
+.inner, input, .amount span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: calc(var(--paddingWidth) * var(--multiplier));
+}
+.inner, button {
+  color: var(--colourTxtMain);
+}
+.label {
+  user-select: none;
+  align-items: flex-end;
+}
+button {
+  cursor: pointer;
+}
+button {
+  border: none;
+  border-radius: var(--paddingWidth);
+  box-sizing: border-box;
+  align-items: center;
+}
+input {
+  width: 100%;
+  height: var(--inputHeight);
+  box-sizing: border-box;
+  border: none;
+  border-radius: var(--paddingWidth);
+  background-color: var(--colourTxtMain);
+  color: var(--colourBg);
+  text-align: center;
+}
+button {
+  background-color: var(--colourMainD);
+}
+button:hover {
+  background-color: var(--colourMainL);
+}
+.result {
+  text-align: center;
+}
+.result:not(:last-child) {
+  margin-bottom: calc(var(--paddingWidth) * var(--multiplier));
+}
